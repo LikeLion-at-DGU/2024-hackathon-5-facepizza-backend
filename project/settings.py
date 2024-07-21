@@ -40,9 +40,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
-    'main',
     'accounts',
-    'users',
+    'mypage',
+    'album',
+    'snap',
+    'stretching',
+    'tracking'
 ]
 
 MIDDLEWARE = [
