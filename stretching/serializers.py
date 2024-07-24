@@ -9,13 +9,13 @@
         
 # stretching/serializers.py
 from rest_framework import serializers
-from .models import ExerciseRecord
+from .models import DailyChallenge
 
-class ExerciseRecordSerializer(serializers.ModelSerializer):
+class DailyChallengeSerializer(serializers.ModelSerializer):
     user = serializers.ReadOnlyField(source='user.username')  
     # user 필드를 username으로 직렬화
-    
+
     class Meta:
-        model = ExerciseRecord
-        fields = ('user', 'content', 'date')
+        model = DailyChallenge
+        fields = ('user', 'content', 'date', 'created_at', 'updated_at')
         read_only_fields = ('user', 'date')
