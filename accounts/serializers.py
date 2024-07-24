@@ -57,7 +57,10 @@ class LoginSerializer(serializers.Serializer):
     def validate(self, data):
         user = authenticate(**data)
         if user:
-            token = Token.objects.get(user=user)
+            # 기존 토큰 삭제
+            Token.objects.filter(user=user).delete()
+            # 새로운 토큰 생성
+            token, created = Token.objects.get_or_create(user=user)
             return token
         
         raise serializers.ValidationError( # 가입된 유저가 없을 경우
