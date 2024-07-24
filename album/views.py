@@ -27,4 +27,4 @@ class EmotionImageListViewSet(viewsets.GenericViewSet, mixins.ListModelMixin):
 class EmotionImageViewSet(viewsets.GenericViewSet, mixins.RetrieveModelMixin, mixins.DestroyModelMixin):
     queryset = EmotionImage.objects.all()
     serializer_class = EmotionImageSerializer
-    permissions_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
