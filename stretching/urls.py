@@ -13,8 +13,8 @@
 
 # stretching/urls.py
 from django.urls import path
-from .views import ExerciseRecordCreateView
+from .views import DailyChallengeCreateView
 
 urlpatterns = [
-    path('stretching/record/', ExerciseRecordCreateView.as_view(), name='exercise_record_create'),
+    path('stretching/record/', DailyChallengeCreateView.as_view(), name='daily_challenge_create'),
 ]
