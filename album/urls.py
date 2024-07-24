@@ -8,12 +8,12 @@ from django.conf.urls.static import static
 app_name = 'album'
 
 default_router = routers.SimpleRouter(trailing_slash=False)
-default_router.register("album", EmotionImageListViewSet, basename="album")
+default_router.register("albums", EmotionImageListViewSet, basename="albums")
 
 emotion_image_router = routers.SimpleRouter(trailing_slash=False)
-emotion_image_router.register("image", EmotionImageViewSet, basename="image")
+emotion_image_router.register("images", EmotionImageViewSet, basename="images")
 
 urlpatterns = [
     path('', include(default_router.urls)),
-    path('album/', include(emotion_image_router.urls)),
+    path('albums/', include(emotion_image_router.urls)),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
