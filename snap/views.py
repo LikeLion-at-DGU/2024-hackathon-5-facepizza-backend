@@ -14,4 +14,4 @@ from django.shortcuts import get_object_or_404
 class EmotionImageCreateViewSet(viewsets.GenericViewSet, mixins.CreateModelMixin):
     queryset = EmotionImage.objects.all()
     serializer_class = EmotionImageSerializer
-    permissions_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
