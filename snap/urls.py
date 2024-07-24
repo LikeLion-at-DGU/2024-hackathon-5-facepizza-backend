@@ -8,7 +8,7 @@ from django.conf.urls.static import static
 app_name = 'snap'
 
 default_router = routers.SimpleRouter(trailing_slash=False)
-default_router.register("snap", EmotionImageCreateViewSet, basename="snap")
+default_router.register("snaps", EmotionImageCreateViewSet, basename="snaps")
 
 urlpatterns = [
     path("", include(default_router.urls)),
