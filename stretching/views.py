@@ -28,11 +28,11 @@
 
 # stretching/views.py
 from rest_framework import generics, permissions
-from .models import ExerciseRecord
-from .serializers import ExerciseRecordSerializer
+from .models import DailyChallenge
+from .serializers import DailyChallengeSerializer
 
-class ExerciseRecordCreateView(generics.CreateAPIView):
-    serializer_class = ExerciseRecordSerializer
+class DailyChallengeCreateView(generics.CreateAPIView):
+    serializer_class = DailyChallengeSerializer
     permission_classes = [permissions.IsAuthenticated]
 
     def perform_create(self, serializer):
