@@ -16,11 +16,18 @@ class MypageViewSet(viewsets.GenericViewSet, mixins.RetrieveModelMixin):
     permission_classes = [IsAuthenticated]
 
     def get_object(self):
+        # 인증된 사용자의 객체를 반환
         return self.request.user
+
+    @action(detail=False, methods=['get'])
+    def profile(self, request, *args, **kwargs):
+        user = self.get_object()
+        serializer = self.get_serializer(user)
+        return Response(serializer.data)
 
 class AchievementViewSet(viewsets.GenericViewSet, mixins.ListModelMixin):
     serializer_class = AchievementSerializer
     permission_classes = [IsAuthenticated, IsOwnerOrReadOnly]
 
     def get_queryset(self):
-        return Achievement.objects.filter(user=self.request.user.id)
+        return Achievement.objects.filter(user=self.request.user)
