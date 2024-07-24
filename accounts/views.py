@@ -23,7 +23,7 @@ class LoginView(generics.GenericAPIView):
         return Response({"token" : token.key}, status = status.HTTP_200_OK)
 
 class LogoutView(generics.GenericAPIView):
-    permission_classes = (IsAuthenticated,)
+    permission_classes = [IsAuthenticated]
 
     def post(self, request):
         user = request.user
