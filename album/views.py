@@ -13,7 +13,7 @@ from django.shortcuts import get_object_or_404
 # Create your views here.
 class EmotionImageListViewSet(viewsets.GenericViewSet, mixins.ListModelMixin):
     serializer_class = EmotionImageSerializer
-    permission_classes = [IsAuthenticated, IsOwnerOrReadOnly]
+    permission_classes = [IsAuthenticated]
     
     def get_queryset(self):
         queryset = EmotionImage.objects.all()
@@ -22,9 +22,9 @@ class EmotionImageListViewSet(viewsets.GenericViewSet, mixins.ListModelMixin):
         if emotion:
             queryset = queryset.filter(emotion=emotion)
         
-        return queryset.filter(user=self.request.user)
+        return queryset.filter(user=self.request.user.id)
 
 class EmotionImageViewSet(viewsets.GenericViewSet, mixins.RetrieveModelMixin, mixins.DestroyModelMixin):
     queryset = EmotionImage.objects.all()
     serializer_class = EmotionImageSerializer
-    permissions_classes = [IsAuthenticated, IsOwnerOrReadOnly]
+    permissions_classes = [IsAuthenticated]
