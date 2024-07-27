@@ -9,11 +9,21 @@ from django.dispatch import receiver
 def image_upload_path(instance, filename):
     return f'{instance.user.username}/{filename}'
 
+EMOTION_CHOICES = [
+    ('happy', 'Happy'),
+    ('sad', 'Sad'),
+    ('angry', 'Angry'),
+    ('surprised', 'Surprised'),
+    ('disgusted', 'Disgusted'),
+    ('fearful', 'Fearful'),
+    ('neutral', 'Neutral'),
+]
+
 class EmotionImage(models.Model):
     id = models.AutoField(primary_key=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     image = models.ImageField(upload_to=image_upload_path, blank=True, null=True)
-    emotion = models.CharField(max_length=50)
+    emotion = models.CharField(max_length=50, choices=EMOTION_CHOICES)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
