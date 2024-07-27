@@ -17,5 +17,5 @@ class DailyChallengeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = DailyChallenge
-        fields = ('user', 'content', 'date', 'created_at', 'updated_at')
-        read_only_fields = ('user', 'date')
+        fields = '__all__'
+        read_only_fields = ['user']

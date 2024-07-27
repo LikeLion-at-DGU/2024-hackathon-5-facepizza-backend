@@ -6,4 +6,4 @@ class EmotionImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = EmotionImage
         fields = '__all__'
-        read_only_fields = ['User']
+        read_only_fields = ['user']
