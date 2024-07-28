@@ -16,5 +16,5 @@ from django.urls import path
 from .views import DailyChallengeCreateView
 
 urlpatterns = [
-    path('stretching/record/', DailyChallengeCreateView.as_view(), name='exercise_record_create'),
+    path('stretching/record', DailyChallengeCreateView.as_view(), name='dailychallenge_create'),
 ]
