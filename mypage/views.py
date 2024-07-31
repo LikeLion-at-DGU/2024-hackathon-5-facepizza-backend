@@ -5,14 +5,13 @@ from rest_framework.exceptions import PermissionDenied
 from rest_framework.decorators import action
 
 from .permissions import IsOwnerOrReadOnly
-from .models import Achievement
-from .serializers import AchievementSerializer, UserSerializer
+from .serializers import MypageSerializer
 
 from django.shortcuts import get_object_or_404
 
 # Create your views here.
 class MypageViewSet(viewsets.GenericViewSet, mixins.RetrieveModelMixin):
-    serializer_class = UserSerializer
+    serializer_class = MypageSerializer
     permission_classes = [IsAuthenticated]
 
     def get_object(self):
@@ -24,13 +23,3 @@ class MypageViewSet(viewsets.GenericViewSet, mixins.RetrieveModelMixin):
         user = self.get_object()
         serializer = self.get_serializer(user)
         return Response(serializer.data)
-
-class AchievementViewSet(viewsets.GenericViewSet, mixins.ListModelMixin, mixins.CreateModelMixin):
-    serializer_class = AchievementSerializer
-    permission_classes = [IsAuthenticated]
-
-    def get_queryset(self):
-        return Achievement.objects.filter(user=self.request.user)
-
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
