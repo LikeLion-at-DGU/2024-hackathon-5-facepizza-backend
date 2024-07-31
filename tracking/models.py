@@ -17,7 +17,7 @@ EMOTION_CHOICES = [
 
 class Report(models.Model):
     id = models.AutoField(primary_key=True)
-    user_id = models.ForeignKey(User, null=False, blank=False, on_delete=models.CASCADE)
+    # user_id = models.ForeignKey(User, null=False, blank=False, on_delete=models.CASCADE)
     happy = models.FloatField(default=0)
     sad = models.FloatField(default=0)
     angry = models.FloatField(default=0)
@@ -25,12 +25,13 @@ class Report(models.Model):
     disgusted = models.FloatField(default=0)
     fearful = models.FloatField(default=0)
     neutral = models.FloatField(default=0)
-    created_at = models.DateTimeField(auto_now_add=True)                  # 시간도 출력?
-    # updated_at = models.DateTimeField(auto_now=True)                    # 필요?
-    memo = models.TextField(max_length=200, null=True)
-
-class Highlight(models.Model):
-    id = models.AutoField(primary_key=True)
-    report_id = models.ForeignKey(Report, null=False, blank=False, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to=HighlightImage_upload_path, null=True)    # 하이라이트 몇 장씩 출력할건지?
-    emotion = models.CharField(max_length=10, choices=EMOTION_CHOICES)                      
+    created_at = models.DateTimeField(auto_now_add=True)
+    ended_at = models.DateTimeField(auto_now=True)
+    title = models.CharField(max_length=50)
+    happy_highlight = models.TextField(blank=True)
+    sad_highlight = models.TextField(blank=True)
+    angry_highlight = models.TextField(blank=True)
+    surprised_highlight = models.TextField(blank=True)
+    disgusted_highlight = models.TextField(blank=True)
+    fearful_highlight = models.TextField(blank=True)
+    neutral_highlight = models.TextField(blank=True)
