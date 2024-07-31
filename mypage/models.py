@@ -3,20 +3,23 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
-ACHIEVEMENT_CHOICES = [
-    ('3days_stretching', '3days_stretching'),
-    ('7days_stretching', '7days_stretching'),
-    ('30days_stretching', '30days_stretching'),
-    ('3days_practicing', '3days_practicing'),
-    ('7days_practicing', '7days_practicing'),
-    ('30days_practicing', '30days_practicing'),
+EMOTION_CHOICES = [
+    ('happy', 'Happy'),
+    ('sad', 'Sad'),
+    ('angry', 'Angry'),
+    ('surprised', 'Surprised'),
+    ('disgusted', 'Disgusted'),
+    ('fearful', 'Fearful'),
+    ('neutral', 'Neutral'),
 ]
 
-class Achievement(models.Model):
+class Mission(models.Model):
     id = models.AutoField(primary_key=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    title = models.CharField(max_length=20, choices = ACHIEVEMENT_CHOICES)
-    content = models.TextField()
-    isComplete = models.PositiveIntegerField(default=0, blank=True)
+    emotion = models.CharField(max_length=50, choices=EMOTION_CHOICES)
+    goal_count = models.PositiveIntegerField()
+    now_count = models.PositiveIntegerField(default=0)
+    experience = models.PositiveIntegerField()
+    is_completed = models.PositiveIntegerField(default=0) #0:False, 1:True
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
