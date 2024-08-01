@@ -6,6 +6,7 @@ from rest_framework.decorators import action
 
 from .permissions import IsOwnerOrReadOnly
 from .models import EmotionImage
+from character.models import Character
 from .serializers import EmotionImageSerializer
 
 from django.shortcuts import get_object_or_404
@@ -18,3 +19,10 @@ class EmotionImageCreateViewSet(viewsets.GenericViewSet, mixins.CreateModelMixin
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+
+        try:
+            character = Character.objects.get(user=self.request.user)
+        except Character.DoesNotExist:
+            return Response({'error': 'Character not found'}, status=404)
+        
+        character.update_experience(5)
