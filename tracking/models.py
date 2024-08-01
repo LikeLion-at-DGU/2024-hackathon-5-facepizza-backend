@@ -27,7 +27,7 @@ class Report(models.Model):
     neutral = models.FloatField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     ended_at = models.DateTimeField(auto_now=True)
-    title = models.CharField(max_length=50)
+    title = models.CharField(max_length=50, null=True)
     happy_highlight = models.TextField(blank=True)
     sad_highlight = models.TextField(blank=True)
     angry_highlight = models.TextField(blank=True)

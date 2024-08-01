@@ -49,7 +49,8 @@ INSTALLED_APPS = [
     'album',
     'snap',
     'stretching',
-    'tracking'
+    'tracking',
+    'character',
 ]
 
 MIDDLEWARE = [
