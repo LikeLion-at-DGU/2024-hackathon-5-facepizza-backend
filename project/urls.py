@@ -25,6 +25,5 @@ urlpatterns = [
     path('api/', include('mypage.urls')),
     path('api/', include('album.urls')),
     path('api/', include('snap.urls')),
-    path('api/', include('stretching.urls')),
     path('api/', include('tracking.urls')),
 ]
