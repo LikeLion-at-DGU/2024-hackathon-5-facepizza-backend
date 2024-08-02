@@ -6,18 +6,18 @@ def HighlightImage_upload_path(instance, filename):
     return f'{instance.pk}/{filename}'
 
 EMOTION_CHOICES = [
-    ('happy', 'Happy'),
-    ('sad', 'Sad'),
-    ('angry', 'Angry'),
-    ('surprised', 'Surprised'),
-    ('disgusted', 'Disgusted'),
-    ('fearful', 'Fearful'),
-    ('neutral', 'Neutral'),
+    ('happy', '행복'),
+    ('sad', '슬픔'),
+    ('angry', '분노'),
+    ('surprised', '놀람'),
+    ('disgusted', '혐오'),
+    ('fearful', '두려움'),
+    ('neutral', '무표정'),
 ]
 
 class Report(models.Model):
     id = models.AutoField(primary_key=True)
-    # user_id = models.ForeignKey(User, null=False, blank=False, on_delete=models.CASCADE)
+    user_id = models.ForeignKey(User, null=False, blank=False, on_delete=models.CASCADE)
     happy = models.FloatField(default=0)
     sad = models.FloatField(default=0)
     angry = models.FloatField(default=0)
