@@ -17,7 +17,7 @@ EMOTION_CHOICES = [
 
 class Report(models.Model):
     id = models.AutoField(primary_key=True)
-    user_id = models.ForeignKey(User, null=False, blank=False, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, null=True, blank=False, on_delete=models.CASCADE)
     happy = models.FloatField(default=0)
     sad = models.FloatField(default=0)
     angry = models.FloatField(default=0)
