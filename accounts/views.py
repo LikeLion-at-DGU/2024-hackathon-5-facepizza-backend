@@ -8,7 +8,6 @@ from rest_framework.authtoken.models import Token
 from rest_framework.permissions import IsAuthenticated
 
 from .serializers import RegisterSerializer, LoginSerializer
-from mypage.models import Mission
 from character.models import Character
 
 class RegisterView(generics.CreateAPIView):
@@ -16,8 +15,7 @@ class RegisterView(generics.CreateAPIView):
     serializer_class = RegisterSerializer
 
     def perform_create(self, serializer):
-        user = serializer.save()
-        Mission.objects.create(user=user, emotion="happy", goal_count=1, experience=10)    
+        user = serializer.save() 
 
         Character.objects.create(user=user, level=1, exp=0)
 
