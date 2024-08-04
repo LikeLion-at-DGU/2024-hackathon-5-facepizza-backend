@@ -160,6 +160,11 @@ CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:8000',
 
     # 프론트엔드 도메인 또는 IP주소
-    'https://main.dbe65wgk6en8g.amplifyapp.com', 
+    'https://main--facepizza-cheese.netlify.app', 
     "https://facepizza-cheese.site"
 ]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://facepizza-cheese.site"
+]
+CSRF_COOKIE_SECURE = True
