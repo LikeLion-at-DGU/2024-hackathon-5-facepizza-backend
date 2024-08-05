@@ -36,3 +36,11 @@ class LogoutView(generics.GenericAPIView):
         Token.objects.filter(user=user).delete()
         return Response({"detail": "로그아웃 성공"},
                         status=status.HTTP_200_OK)
+    
+class DeleteUserView(generics.DestroyAPIView):
+    permission_classes = [IsAuthenticated]
+
+    def delete(self, request, *args, **kwargs):
+        user = request.user
+        user.delete()
+        return Response({"detail": "회원 탈퇴가 완료되었습니다."}, status=status.HTTP_204_NO_CONTENT)
