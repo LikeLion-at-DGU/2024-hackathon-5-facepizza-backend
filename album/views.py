@@ -10,6 +10,9 @@ from snap.serializers import EmotionImageSerializer
 
 from django.shortcuts import get_object_or_404
 
+from django.utils import timezone
+from datetime import timedelta
+
 # Create your views here.
 class EmotionImageListViewSet(viewsets.GenericViewSet, mixins.ListModelMixin):
     serializer_class = EmotionImageSerializer
@@ -23,6 +26,16 @@ class EmotionImageListViewSet(viewsets.GenericViewSet, mixins.ListModelMixin):
             queryset = queryset.filter(emotion=emotion)
         
         return queryset.filter(user=self.request.user.id)
+    
+    @action(detail=False, methods=['get'], url_path='count')
+    def count_today(self, request):
+        now = timezone.now()
+        start_of_day = now.replace(hour=0, minute=0, second=0, microsecond=0)
+        count = EmotionImage.objects.filter(
+            user=self.request.user.id,
+            created_at__gte=start_of_day
+        ).count()
+        return Response({'count': count})
 
 class EmotionImageViewSet(viewsets.GenericViewSet, mixins.RetrieveModelMixin, mixins.DestroyModelMixin):
     queryset = EmotionImage.objects.all()
