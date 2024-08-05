@@ -3,13 +3,15 @@ from rest_framework import viewsets, mixins
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.exceptions import PermissionDenied
 from rest_framework.decorators import action
+from rest_framework.exceptions import ValidationError
 from django.contrib.auth.models import User
+from django.utils.dateparse import parse_date
+from datetime import datetime, timedelta
 
 from .permissions import IsOwnerOrReadOnly
 from .serializers import MypageSerializer
 from character.serializers import CharacterSerializer
 from character.models import Character
-
 from django.shortcuts import get_object_or_404
 
 from snap.models import EmotionImage
@@ -77,4 +79,4 @@ class MypageViewSet(viewsets.GenericViewSet, mixins.RetrieveModelMixin):
         # 각 감정별 점수 반환
         return Response({
             'total_points': total_points
-        })
+        })  
