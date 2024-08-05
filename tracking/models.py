@@ -25,9 +25,11 @@ class Report(models.Model):
     disgusted = models.FloatField(default=0)
     fearful = models.FloatField(default=0)
     neutral = models.FloatField(default=0)
+
     created_at = models.DateTimeField()
     ended_at = models.DateTimeField()
     title = models.CharField(max_length=50, null=True)
+
     happy_highlight = models.TextField(blank=True)
     sad_highlight = models.TextField(blank=True)
     angry_highlight = models.TextField(blank=True)
@@ -35,3 +37,11 @@ class Report(models.Model):
     disgusted_highlight = models.TextField(blank=True)
     fearful_highlight = models.TextField(blank=True)
     neutral_highlight = models.TextField(blank=True)
+
+    happy_maxValue = models.FloatField(default=0)
+    sad_maxValue = models.FloatField(default=0)
+    angry_maxValue = models.FloatField(default=0)
+    surprised_maxValue = models.FloatField(default=0)
+    disgusted_maxValue = models.FloatField(default=0)
+    fearful_maxValue = models.FloatField(default=0)
+    neutral_maxValue = models.FloatField(default=0)
