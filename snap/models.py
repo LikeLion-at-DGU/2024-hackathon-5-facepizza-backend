@@ -8,13 +8,10 @@ from django.dispatch import receiver
 # Create your models here.
 
 EMOTION_CHOICES = [
-    ('happy', 'Happy'),
-    ('sad', 'Sad'),
-    ('angry', 'Angry'),
-    ('surprised', 'Surprised'),
-    ('disgusted', 'Disgusted'),
-    ('fearful', 'Fearful'),
-    ('neutral', 'Neutral'),
+    ('행복', 'happy'),
+    ('슬픔', 'sad'),
+    ('분노', 'angry'),
+    ('놀람', 'surprised')
 ]
 
 def image_upload_path(instance, filename):
