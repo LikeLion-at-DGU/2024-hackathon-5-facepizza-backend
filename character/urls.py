@@ -7,5 +7,5 @@ router.register(r'characters', CharacterViewSet, basename='character')
 
 urlpatterns = [
     path('', include(router.urls)),
-    path('characters/tracking_time', CharacterViewSet.as_view({'get': 'tracking_time'}), name='character-tracking-time')
+    path('characters/tracktime', CharacterViewSet.as_view({'get': 'tracking_time'}), name='character-tracking-time')
 ]

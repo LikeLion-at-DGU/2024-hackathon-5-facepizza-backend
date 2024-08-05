@@ -12,7 +12,7 @@ class CharacterViewSet(viewsets.ModelViewSet):
     queryset = Character.objects.all()
     serializer_class = CharacterSerializer
 
-    @action(detail=False, methods=['get'])
+    @action(detail=False, methods=['get'], url_path='tracktime')
     def tracking_time(self, request):
         try:
             user = request.user
