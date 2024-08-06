@@ -13,6 +13,7 @@ from rest_framework.exceptions import NotAuthenticated
 class CharacterViewSet(viewsets.ModelViewSet):
     queryset = Character.objects.all()
     serializer_class = CharacterSerializer
+    permission_classes = [IsAuthenticated]
 
     @action(detail=False, methods=['get'], url_path='tracktime')
     def tracking_time(self, request):
