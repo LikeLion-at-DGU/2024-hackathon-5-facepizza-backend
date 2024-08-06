@@ -7,18 +7,26 @@ from .serializers import CharacterSerializer
 from tracking.serializers import ReportSerializer
 from datetime import timedelta
 from zoneinfo import ZoneInfo
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.exceptions import NotAuthenticated
 
 class CharacterViewSet(viewsets.ModelViewSet):
     queryset = Character.objects.all()
     serializer_class = CharacterSerializer
+    permission_classes = [IsAuthenticated]
 
     @action(detail=False, methods=['get'], url_path='tracktime')
     def tracking_time(self, request):
+        if not request.user.is_authenticated:
+            raise NotAuthenticated("Authentication credentials were not provided or are invalid.")
+        
         try:
             user = request.user
             character = Character.objects.get(user=user)
         except Character.DoesNotExist:
             return Response({'error': 'Character not found'}, status=404)
+        except Exception as e:
+            return Response({'error': str(e)}, status=500)
 
         reports = Report.objects.filter(user=user)
         daily_time = {}
