@@ -171,3 +171,4 @@ CSRF_TRUSTED_ORIGINS = [
     "https://facepizza-cheese.site"
 ]
 CSRF_COOKIE_SECURE = True
+DATA_UPLOAD_MAX_MEMORY_SIZE = 5242880
